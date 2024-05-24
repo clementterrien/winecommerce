@@ -24,5 +24,7 @@
 /assets/vendor/
 ###< symfony/asset-mapper ###
 
+### composer
+composer.lock
 # Env and secrets
 .env*
