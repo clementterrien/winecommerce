@@ -1,17 +1,19 @@
 <?php
 namespace App\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\Controller\Base\BaseWebTestCase;
 
-class HomeControllerTest extends WebTestCase
+class HomeControllerTest extends BaseWebTestCase
 {
-    public function testIndex()
+    public function testHome()
     {
         $client = static::createClient();
-
-        $client->request('GET', '/home');
-
+        $uri = $client->getContainer()->get('router')->generate('home');
+        $crawler = $client->request('GET', $uri);
+        
         $this->assertResponseIsSuccessful();
-        // $this->assertSelectorTextContains('h1', 'Hello, World!');
+        $this->assertNavbarIsDisplayed($this, $crawler);
     }
+
+
 }

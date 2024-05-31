@@ -26,5 +26,6 @@
 
 ### composer
 composer.lock
+
 # Env and secrets
 .env*
