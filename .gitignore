@@ -1,5 +1,6 @@
 
 ###> symfony/framework-bundle ###
+.env
 /.env.local
 /.env.local.php
 /.env.*.local
@@ -26,6 +27,3 @@
 
 ### composer
 composer.lock
-
-# Env and secrets
-.env*
