@@ -1,0 +1,327 @@
+
+/********************************************************************/
+/* ====================== 1 - Navbar Generals ===================== */
+/********************************************************************/
+
+nav#my-navbar {
+    background-color: white;
+    width: 100%; min-height: 110px; padding-right: 1%;
+    justify-content: space-around;
+}
+
+/********************************************************************/
+/* ======================= 2 - Navbar Floor1 ====================== */
+/********************************************************************/
+div#navbar-floor1 {
+    width: 100%; height: 90px;
+    display: flex;
+    padding-left: 5vmin;
+    justify-content: space-between;
+}
+/************************************************/
+/* ============== 2.1 - Elements ============== */
+/************************************************/
+/* 1. element logo */
+/* 2. element search */
+/* 3. element menu */
+/* 4. element support */
+
+/*********** 2.1.1 element-logo ***********/
+/******************************************/
+img#brand-logo {
+    width: 125px; height: auto;
+}
+
+/********** 2.1.2 element-search **********/
+/******************************************/
+div#nav-element-search{
+    height: 100%; width: 50%;
+    display: flex;
+    align-items: center;
+    margin-left: 10px; margin-right: 10px;
+}
+div#nav-searchbar {
+    width: 100%; height: 40px;
+}
+
+/*********** 2.1.3 element-menu ***********/
+/******************************************/
+div#nav-element-menu {
+    display: flex;
+    min-width: 406px;
+    height: 100%; width: 40%;
+    padding: 7px;
+}
+/* 4 item-containers */ 
+/* my-account */ 
+/* newsletter */ 
+/* favorites */ 
+/* cart */
+div.item-container {
+    width: 25%; height: 90%;
+    padding: 0.8em;
+    border: solid 1px rgb(255, 255, 255);
+}
+div.item-container.hover {
+    background-color: rgb(245, 245, 245);
+    border: solid 1px rgb(210, 210, 210);
+}
+/********************************************/
+/***** Inside each item-container ***********/
+/***** 1. Logo and Name of the button *******/
+/***** 2. Appearing Box with Mouse overflow */
+/********************************************/
+
+/***** 1. Logo and Name of the button *******/
+/* 1a - logo */
+div.item-logo-section {
+    display: flex;
+    width: 100%; height: 70%;
+    padding: 3%;
+    justify-content: center;
+}
+img.item-logo {
+    width:auto; height: 90%;
+}
+/* 1b - name*/
+p.menu-item-title{
+    text-align: center;
+    font-size: 11px;
+}
+
+/***** 2. Appearing Boxes with Mouse overflow */
+/* 1. account-box */
+/* 2. newsletter-box */
+/* 3. cart-box */
+div.border-menu {
+    border: solid 1px rgb(225, 225, 225);
+}
+.box-content {
+    font-size: 12px; text-align: justify;
+}
+/* 1. account-box */
+/* One Display if user's logged other if not */
+div#account-box { 
+    display: none; 
+    width: 350px; max-height: 500px; 
+    padding: 1rem; top: 100%; right: -1px; z-index: 10;
+}
+
+/* Logged Out */
+h2.box-title, h3.box-title {
+        margin-top: 7px;
+        font-size: 19px;
+        justify-content: center;
+        text-align: center;
+    }
+
+/* Logged In*/
+div.left-box-buttons-col {
+    display: flex; flex-direction: column;
+    width: 60%; height: 100%;
+}
+div.right-box-buttons-col {
+    display: flex; flex-direction: column;
+    width: 40%; height: 100%;
+}
+
+div.myaccount-box-buttons {
+    display: flex;
+    height: 85px;
+}
+
+div.box-buttons-button {
+    display: flex; flex-direction: column;
+    height: 50%;
+    margin: 3px;
+    justify-content: center; align-items: center;
+    font-size: 11px;
+    border: solid rgb(169, 169, 169) 1px;
+}
+div.box-buttons-button.hover {
+    background-color: rgb(220, 220, 220);
+}
+div.box-buttons-title {
+    display: flex; flex-direction: column;
+    width: 100%; height: 100%;
+    margin: 0;
+    align-items: center; justify-content: center;
+}
+div.box-buttons-button a {
+    width: 100%; height: 100%;
+    text-decoration: none;
+    color: black;
+}
+div.box-buttons-button p {
+    display: flex;
+    justify-content: center;
+}
+
+/* 2. newsletter-box */
+div#newsletter-box {
+    display: none;
+    width: 300px; height: auto;
+    top: 100%;left: -1px; z-index: 10;
+    padding: 1rem;
+}
+div.box-newsletter-form {
+    display: flex; flex-direction: column;
+    justify-content: center;
+    min-height: 4rem;
+    padding-top: 0.8rem; padding-bottom: 0.8rem;
+}
+input#box-newsletter-form-input {
+    width: 70%; height: 100%; min-height: 2rem;
+}
+button#box-newsletter-form-btn {
+    width: 28%; height: 100%; min-height: 2rem;
+    background-color: gray; color: white;
+    border: solid 1px rgb(210, 210, 210);
+}
+
+/* 3. cart-box */
+div#cart-box {
+    display: none;
+    top: 100%; right: -1px; z-index: 10;
+    width: 350px;
+    padding: 1rem;
+}
+div.cart-box-product-quantity {
+    width: 15%;
+    text-align: right; vertical-align: top;
+}
+div.product-infos-other-infos {
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+
+/*********** 2.1.3 element-support ***********/
+/******************************************/
+div#nav-element-support {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 18%; max-width: 145px;
+}
+p#phone-support-numbers {
+    font-weight: 900; font-size: 1.2rem;
+    white-space: nowrap;
+}
+/************* end element menu *************/
+
+
+
+/********************************************************************/
+/* ======================= 3 - Navbar Floor2 ====================== */
+/********************************************************************/
+#navbar-floor2 {
+    width: 100%; height: 25px;
+    margin-top: 10px; padding-left: 5vmin;
+}
+.navbar-floor2-elements {
+    align-items: center;
+    margin-left: 5%;
+    font-weight: 900;
+}
+.element-home {
+    width: 100px;
+}
+.element-home img {
+    width: auto; height: 100%;
+    margin-left: 20px;
+}
+div.nav-element-wine-button {
+    display: flex;
+    height: 100%;
+    box-sizing: content-box;
+}
+div.nav-element-wine-button.hover {
+    border-bottom: solid black 3px;
+}
+.floor2-text-element {
+    margin-bottom: 0;
+}
+hr {
+    width: 95%;
+}
+
+
+/********************************************************************/
+/* ======================= 4 - Media Queries ====================== */
+/********************************************************************/
+
+
+@media (min-width: 992px) and (max-width: 1137px) {
+    #navbar-container {
+        display: inline;
+    }
+    #reduced-navbar-container {
+        display: none;
+    }
+    .element-menu{
+        width: 41.6333%;
+    }
+}
+
+/**************  Tablet Device  ****************/
+@media (min-width: 1138px) {
+    .element-support {
+        display: flex;
+    }
+    #reduced-navbar-container {
+        display: none;
+    }
+}
+
+@media (max-width: 991px) {
+
+    nav#my-navbar {
+        display: none;
+    }
+    nav#reduced-navbar-container {
+        display: flex; width: 100%; height: 150px;
+    }
+
+    div#reduced-nav-element-logo {
+        width: 50%; margin-left: 2%;
+    }
+    img#reduced-brand-logo {
+        width: 90%; height: auto; max-width: 250px;
+    }
+
+    div#reduced-element-menu {
+        display: flex; align-items: center;
+        width: 40%; min-width: 90px; max-width: 330px; margin-right: 2%;
+    }
+
+    a.reduced-nav-btn {
+        display: flex; align-items: center; justify-content: center;
+        height: 45px; width: 100%;
+        border: solid 1px rgb(255, 255, 255);
+    }
+    a.reduced-nav-btn.hover {
+        background-color: rgb(245, 245, 245);
+        border: solid 1px rgb(210, 210, 210);
+    }
+    a#reduced-nav-newsletter-btn {
+        padding-bottom: 2px; padding-top: 2px;
+    }
+
+    .reduced-item-container {
+        width: 25%; height: 100%;
+        display: flex; align-items: center; justify-content: center;
+    }
+
+    img.reduced-item-logo {
+        width: auto; height: 53%;
+        max-height: 32px;
+    }
+    div#reduced-nav-searchbar {
+        height: 2.5em;
+    }
+}
+
+
+
+

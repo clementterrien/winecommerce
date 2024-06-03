@@ -1,5 +1,6 @@
 
 ###> symfony/framework-bundle ###
+.env
 /.env.local
 /.env.local.php
 /.env.*.local
@@ -24,5 +25,5 @@
 /assets/vendor/
 ###< symfony/asset-mapper ###
 
-# Env and secrets
-.env*
+### composer
+composer.lock
