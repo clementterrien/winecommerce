@@ -35,16 +35,17 @@ jobs:
         echo $BRANCH_REF
         if [[ $BRANCH_REF =~ release-([0-9]+)-([0-9]+)-([0-9]+) ]]; then
           VERSION="${BASH_REMATCH[1]}.${BASH_REMATCH[2]}.${BASH_REMATCH[3]}"
-          echo "::set-output name=version::$VERSION"
+          echo "version=$VERSION" >> "$GITHUB_ENV"
+
         else
           echo "Branch name does not match pattern"
           exit 1
         fi
 
     - name: Create and push tag
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         VERSION=${{ steps.extract_version.outputs.version }}
         git tag -a "$VERSION" -m "Release $VERSION"
-
-        git push origin "$VERSION"
-
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} "$VERSION"
