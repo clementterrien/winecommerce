@@ -21,12 +21,15 @@ jobs:
         git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
     - name: Print GitHub context
-      run: echo "$GITHUB_CONTEXT"
+      run: | 
+        echo "$GITHUB_CONTEXT"
+        echo "${{ github.event.pull_request.head.ref_name}}"
+        echo "${{ github.ref_name }}"
 
     - name: Extract version from branch name
       id: extract_version
       run: |
-        BRANCH_REF=${{ github.event.pull_request.head.ref }}
+        BRANCH_REF=${{ github.event.pull_request.head.ref_name }}
         if [[ $BRANCH_REF =~ release-([0-9]+)-([0-9]+)-([0-9]+) ]]; then
           VERSION="${BASH_REMATCH[1]}.${BASH_REMATCH[2]}.${BASH_REMATCH[3]}"
           echo "::set-output name=version::$VERSION"
