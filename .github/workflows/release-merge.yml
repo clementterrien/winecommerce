@@ -2,9 +2,6 @@ name: Tag on Release Merge
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - master
 
 env:
   GITHUB_CONTEXT: ${{ toJson(github) }}
