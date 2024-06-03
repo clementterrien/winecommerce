@@ -1,6 +1,7 @@
 name: Tag on Release Merge
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -19,6 +20,11 @@ jobs:
         git config --global user.name "${{ github.actor }}"
         git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
+    - name: Debug: Print GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+
     - name: Extract version from branch name
       id: extract_version
       run: |
@@ -35,4 +41,6 @@ jobs:
       run: |
         VERSION=${{ steps.extract_version.outputs.version }}
         git tag -a "$VERSION" -m "Release $VERSION"
+
         git push origin "$VERSION"
+
