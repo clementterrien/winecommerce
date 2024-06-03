@@ -46,6 +46,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        VERSION=${{ steps.extract_version.outputs.version }}
         git tag -a "$VERSION" -m "Release $VERSION"
         git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} "$VERSION"
+
