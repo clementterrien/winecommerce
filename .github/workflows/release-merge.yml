@@ -22,7 +22,7 @@ jobs:
         git config --global user.name "${{ github.actor }}"
         git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
-    - name: Debug: Print GitHub context
+    - name: Print GitHub context
       run: echo "$GITHUB_CONTEXT"
 
     - name: Extract version from branch name
