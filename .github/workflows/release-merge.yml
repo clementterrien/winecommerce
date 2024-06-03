@@ -2,7 +2,11 @@ name: Tag on Release Merge
 
 on:
   workflow_dispatch:
-
+  pull_request:
+    # Sequence of patterns matched against refs/heads
+    branches:
+      - "master"
+      
 env:
   GITHUB_CONTEXT: ${{ toJson(github) }}
 
