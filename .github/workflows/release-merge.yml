@@ -6,6 +6,8 @@ on:
     branches:
       - master
 
+env:
+  GITHUB_CONTEXT: ${{ toJson(github) }}
 jobs:
   create_tag:
     if: startsWith(github.event.head_commit.message, 'Merge pull request') && contains(github.event.head_commit.message, 'release-')
@@ -21,8 +23,6 @@ jobs:
         git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
     - name: Debug: Print GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "$GITHUB_CONTEXT"
 
     - name: Extract version from branch name
