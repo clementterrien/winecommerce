@@ -8,7 +8,7 @@ env:
 
 jobs:
   create_tag:
-    if: startsWith(github.event.head_commit.message, 'test') && contains(github.event.head_commit.message, 'release-')
+    if: startsWith(github.event.head_commit.message, 'debug') && contains(github.event.head_commit.message, 'debug')
     runs-on: ubuntu-latest
 
     steps:
