@@ -1,51 +1,42 @@
 name: Tag on Release Merge
 
+name: Tag Release
+
 on:
-  workflow_dispatch:
-  pull_request:
-    # Sequence of patterns matched against refs/heads
+  push:
     branches:
-      - "master"
-      
-env:
-  GITHUB_CONTEXT: ${{ toJson(github) }}
+      - master
 
 jobs:
   create_tag:
-    # if: startsWith(github.event.head_commit.message, 'debug') && contains(github.event.head_commit.message, 'debug')
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Git
-      run: |
-        git config --global user.name "${{ github.actor }}"
-        git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+      - name: Get the branch name
+        id: get_branch
+        run: |
+          BRANCH_REF=$(echo ${{ github.event.ref }} | sed 's|refs/heads/||')
+          echo "branch_ref=$BRANCH_REF" >> $GITHUB_ENV
+          echo "Branch ref: $BRANCH_REF"
 
-    - name: Print GitHub context
-      run: | 
-        echo "$GITHUB_CONTEXT"
+      - name: Check if branch matches release pattern
+        id: check_branch
+        run: |
+          if [[ "${{ env.branch_ref }}" =~ ^release\ [0-9]+_[0-9]+_[0-9]+$ ]]; then
+            echo "::set-output name=match::true"
+          else
+            echo "::set-output name=match::false"
+          fi
 
-    - name: Extract version from branch name
-      id: extract_version
-      run: |
-        BRANCH_REF=${{ github.event.pull_request.head.ref }}
-        echo $BRANCH_REF
-        if [[ $BRANCH_REF =~ release-([0-9]+)-([0-9]+)-([0-9]+) ]]; then
-          VERSION="${BASH_REMATCH[1]}.${BASH_REMATCH[2]}.${BASH_REMATCH[3]}"
-          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
-
-        else
-          echo "Branch name does not match pattern"
-          exit 1
-        fi
-
-    - name: Create and push tag
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        git tag -a "$VERSION" -m "Release $VERSION"
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} "$VERSION"
-
+      - name: Create and push tag
+        if: steps.check_branch.outputs.match == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG_NAME=${{ env.branch_ref }}
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "$TAG_NAME" -m "Release $TAG_NAME"
+          git push origin "$TAG_NAME"
