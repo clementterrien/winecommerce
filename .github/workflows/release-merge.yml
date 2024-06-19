@@ -1,7 +1,5 @@
 name: Tag on Release Merge
 
-name: Tag Release
-
 on:
   push:
     branches:
