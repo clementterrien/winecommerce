@@ -24,7 +24,7 @@ jobs:
       - name: Check if branch matches release pattern
         id: check_branch
         run: |
-          if [[ "${{ env.branch_ref }}" =~ ^release\ [0-9]+_[0-9]+_[0-9]+$ ]]; then
+          if [[ "${{ steps.get_commit_message.outputs.message }}" =~ ^Merge\ pull\ request\ #[0-9]+\ from\ .*/release_[0-9]+_[0-9]{2}_[0-9]+$ ]]; then
             echo "::set-output name=match::true"
           else
             echo "::set-output name=match::false"
